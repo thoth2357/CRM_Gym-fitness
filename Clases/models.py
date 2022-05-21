@@ -6,9 +6,7 @@ class Grupo(models.Model):
 
 
 class Clases(models.Model):
-    grupo = models.ForeignKey("Clases.Grupo", verbose_name="La clase grupal debe pertenecer a", on_delete=models.CASCADE)
+    grupo = models.ForeignKey("clases.Grupo", verbose_name="La clase grupal debe pertenecer a", on_delete=models.CASCADE)
     actividad = models.CharField("nombre_de_la_actividad", max_length=50)
     descripción = models.CharField("nombre_de_la_descripción", max_length=50)
     duración = models.DurationField(help_text="duración del evento")
-
-
