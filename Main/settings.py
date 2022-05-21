@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'usuaria',
     'habitaciones',
     'cuotas',
-    
+    'clases'
+
 ]
 
 MIDDLEWARE = [
