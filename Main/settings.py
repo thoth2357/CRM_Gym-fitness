@@ -26,10 +26,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+
     "usuaria",
     "habitaciones",
     "cuotas",
     "clases",
+
+    'widget_tweaks',
     "clear_cache",
     "allauth",
     "allauth.account",
@@ -137,3 +141,15 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 MEDIA_URL = "/imagenes/"
 MEDIA_ROOT = BASE_DIR
+
+AUTH_USER_MODEL = 'usuaria.user'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_EMAIL_VERIFICATION  = "mandatory"
+ACCOUNT_FORMS = {'signup': 'usuaria.forms.CustomSignupForm'}
+# ACCOUNT_SIGNUP_FORM_CLASS = 'usuaria.forms.CustomSignupForm'

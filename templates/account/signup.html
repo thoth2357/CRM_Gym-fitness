@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block title %} Signup {% endblock %}
+
+{% block styles %}
+	<link rel="icon" type="image/png" sizes="16x16 32x32" href="{% static 'img/icons/favicon1.ico' %}"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.css" integrity="sha512-phGxLIsvHFArdI7IyLjv14dchvbVkEDaH95efvAae/y2exeWBQCQDpNFbOTdV1p4/pIa/XtbuDCnfhDEIXhvGQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.2.1/hamburgers.min.css" integrity="sha512-+mlclc5Q/eHs49oIOCxnnENudJWuNqX5AogCiqRBgKnpoplPzETg2fkgBFVC6WYUVxYYljuxPNG8RE7yBy1K+g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animsition/4.0.2/css/animsition.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/login_util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+{% endblock styles %}
+
+{% block content %}
+<body style="background-color: #666666;">
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form" method="post">
+					{% csrf_token %}
+					<span class="login100-form-title p-b-43">
+						Regístrate
+					</span>
+					
+					<div class="wrap-input100">
+						{% render_field form.fullname class+="input100" id="fullname" %}
+						<span class="focus-input100"></span>
+						<span class="label-input100">nombre completo</span>
+					</div>
+					
+					<div class="wrap-input100">
+						{% render_field form.email class+="input100" id="email" %}
+						<span class="focus-input100"></span>
+						<span class="label-input100">Email</span>
+					</div>
+					
+					
+					<div class="wrap-input100 validate-input">
+						{% render_field form.password1 class+="input100" id="password1" %}
+						<span class="focus-input100"></span>
+						<span class="label-input100">Contraseña</span>
+					</div>
+					
+					<div class="wrap-input100 validate-input">
+						{% render_field form.password2 class+="input100" id="password2" %}
+						<span class="focus-input100"></span>
+						<span class="label-input100">confirmar Contraseña</span>
+					</div>
+					
+					{% if redirect_field_value %}
+  						<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  					{% endif %}
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Regístrate
+						</button>
+					</div>
+					
+					<div class="text-center p-t-46 p-b-20">
+						<span class="txt2">
+							regístrate usando
+						</span>
+					</div>
+
+					<div class="login100-form-social flex-c-m">
+						<a href="#" class="login100-form-social-item flex-c-m bg1 m-r-5">
+							<i class="fa fa-facebook-f" aria-hidden="true"></i>
+						</a>
+
+						<a href="#" class="login100-form-social-item flex-c-m bg2 m-r-5">
+							<i class="fa fa-twitter" aria-hidden="true"></i>
+						</a>
+					</div>
+				</form>
+
+				<div class="login100-more" style="background-image: url('{% static 'img/bg-02.jpg' %}');">
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock content %}
+
+{% block script %}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/animsition/4.0.2/js/animsition.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.5/umd/popper.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0-beta1/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.js"></script>
+	{% comment %} <script src="vendor/countdowntime/countdowntime.js"></script> {% endcomment %}
+	<script src="{% static 'js/login.js' %}"></script>
+{% endblock script %}

@@ -1,4 +1,57 @@
+from django.contrib.auth.models import AbstractBaseUser,    BaseUserManager, PermissionsMixin
 from django.db import models
+from django.utils import timezone
+
+
+class UserManager(BaseUserManager):
+
+  def _create_user(self, fullname, email, password, is_staff, is_superuser, **extra_fields):
+    if not email:
+        raise ValueError('Users must have an email address')
+    now = timezone.now()
+    email = self.normalize_email(email)
+    user = self.model(
+        fullname=fullname,
+        email=email,
+        is_staff=is_staff, 
+        is_active=True,
+        is_superuser=is_superuser, 
+        last_login=now,
+        date_joined=now, 
+        **extra_fields
+    )
+    user.set_password(password)
+    user.save(using=self._db)
+    return user
+
+  def create_user(self, fullname, email, password, **extra_fields):
+    return self._create_user(fullname, email, password, False, False, **extra_fields)
+
+  def create_superuser(self, email, password, **extra_fields):
+    user=self._create_user(email, password, True, True, **extra_fields)
+    user.save(using=self._db)
+    return user
+
+
+class User(AbstractBaseUser, PermissionsMixin):
+    fullname = models.CharField(max_length=250, default=None, null=True)
+    email = models.EmailField(max_length=254, unique=True)
+    name = models.CharField(max_length=254, null=True, blank=True)
+    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    last_login = models.DateTimeField(null=True, blank=True)
+    date_joined = models.DateTimeField(auto_now_add=True)
+    
+
+    USERNAME_FIELD = 'email'
+    EMAIL_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+    objects = UserManager()
+
+    def get_absolute_url(self):
+        return "/users/%i/" % (self.pk)
 
 TIPO_CLIENTE = (
     ("S", "SOCIO"),
@@ -12,6 +65,7 @@ ROLES = (
 # Create your models here.
 class Empleado(models.Model):
     'Employee class'
+    user = models.OneToOneField(User, on_delete=models.CASCADE, default=None, null=True)
     nombre = models.CharField(max_length=20)
     apellidos = models.CharField(max_length=80)
     dni = models.CharField(max_length=9, unique=True)
@@ -24,6 +78,7 @@ class Empleado(models.Model):
 
 
 class Cliente(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, default=None, null=True)
     foto = models.ImageField(upload_to='imagenes/clientes/')
     tipo_cliente = models.CharField(choices=TIPO_CLIENTE, max_length=8)
     nombre = models.CharField(max_length=20)

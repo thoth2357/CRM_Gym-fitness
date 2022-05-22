@@ -1,3 +1,4 @@
+
 """Main URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -18,5 +19,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('cuentas/', include('allauth.urls')),
+    path('accounts/', include('allauth.urls')),
 ]
