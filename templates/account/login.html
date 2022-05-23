@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load widget_tweaks %}
+
+
 {% block title %} Login {% endblock %}
 
 {% block styles %}
@@ -24,28 +27,33 @@
 			<div class="wrap-login100">
 				<form class="login100-form validate-form" method="post">
 					{% csrf_token %}
+					{% if redirect_field_value %}
+  					<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  					{% endif %}
+					{% comment %} {{form.as_p}} {% endcomment %}
 					<span class="login100-form-title p-b-43">
 						iniciar sesión para continuar
 					</span>
 					
 					
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="email">
+						{% render_field form.login class+="input100" id="email" %}
 						<span class="focus-input100"></span>
 						<span class="label-input100">Email</span>
 					</div>
 					
 					
 					<div class="wrap-input100 validate-input" data-validate="Password is required">
-						<input class="input100" type="password" name="pass">
+						{% render_field form.password class+="input100" id="password" %}
 						<span class="focus-input100"></span>
 						<span class="label-input100">clave</span>
 					</div>
 
 					<div class="flex-sb-m w-full p-t-3 p-b-32">
 						<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-							<label class="label-checkbox100" for="ckb1">
+							{% comment %} <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me"> {% endcomment %}
+							{% render_field form.remember class+="input-checkbox100" id="id_remember" %}
+							<label class="label-checkbox100" for="id_remember">
 								Acuérdate de mí
 							</label>
 						</div>

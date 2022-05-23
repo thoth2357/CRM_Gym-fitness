@@ -152,4 +152,6 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_EMAIL_VERIFICATION  = "mandatory"
 ACCOUNT_FORMS = {'signup': 'usuaria.forms.CustomSignupForm'}
-# ACCOUNT_SIGNUP_FORM_CLASS = 'usuaria.forms.CustomSignupForm'
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

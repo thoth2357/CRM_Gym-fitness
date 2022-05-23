@@ -33,8 +33,6 @@ class UserAdmin(BaseUserAdmin):
 
 
 admin.site.register(User, UserAdmin)
-
-# Register your models here.
 admin.site.register(Empleado)
 admin.site.register(Cliente)
 
