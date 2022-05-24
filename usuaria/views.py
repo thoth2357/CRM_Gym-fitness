@@ -1,11 +1,8 @@
 from django.shortcuts import render
 
 # Create your views here.
-def register(request):
-    pass
-
-def login(request):
+def dashboard_view(request):
     context = {}
-
-    return render(request, 'Login/index.html', context)
-
+    if request.method == 'GET':
+        print(request)
+    return render(request, 'dashboard/dashboard.html', context)

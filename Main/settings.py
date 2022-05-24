@@ -153,5 +153,5 @@ ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_EMAIL_VERIFICATION  = "mandatory"
 ACCOUNT_FORMS = {'signup': 'usuaria.forms.CustomSignupForm'}
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/dashboard'
 LOGOUT_REDIRECT_URL = '/'

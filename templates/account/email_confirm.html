@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+
+<div style="display: flex; align-items: center; justify-content: center; flex-direction: column">
+    <h3>Account Verification</h3>
+    </br>
+
+    <p>Hi {instance['last_name']}You have been registered Successfully. Please click on the button below to verify the account</p>
+    
+    <a style="margin-top: 1rem; padding: 1rem; border-radius:0.5rem; font-size:1rem; text-decoration:none; background: #0275d8; color: white:" 
+    href="http://{os.getenv('URL')}/api/v1/verify/?token={token}">Verify Your Email</a>
+
+    <p> please kindly ignore this email if you did not register for Arqmail.Thanks</p>
+
+</div>
+{% block content %}
+    <div style="display: flex; align-items: center; justify-content: center; flex-direction: column">
+        <h3>{% trans "Confirm E-mail Address" %}</h3>
+
+        {% if confirmation %}
+
+        {% user_display confirmation.email_address.user as user_display %}
+
+        <p>{% blocktrans with confirmation.email_address.email as email %}Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an e-mail address for user {{ user_display }}.{% endblocktrans %}</p>
+
+        <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+        {% csrf_token %}
+            <button type="submit">{% trans 'Confirm' %}</button>
+        </form>
+
+        {% else %}
+
+        {% url 'account_email' as email_url %}
+
+        <p>{% blocktrans %}This e-mail confirmation link expired or is invalid. Please <a href="{{ email_url }}">issue a new e-mail confirmation request</a>.{% endblocktrans %}</p>
+
+        {% endif %}
+    </div>
+{% endblock content %}
