@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %} Logout {% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock styles %}
+
+
+{% block content %}
+
+<div class="col d-flex justify-content-center">
+    {% comment %} <h1>{% trans "Sign Out" %}</h1> {% endcomment %}
+
+    <p>{% trans 'Are you sure you want to sign out?' %}</p>
+
+    <form method="post" action="{% url 'account_logout' %}">
+    {% csrf_token %}
+    {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+    {% endif %}
+    <button type="submit">{% trans 'Sign Out' %}</button>
+    </form>
+</div>
+{% endblock content %}

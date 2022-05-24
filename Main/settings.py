@@ -151,7 +151,8 @@ ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_EMAIL_VERIFICATION  = "mandatory"
-ACCOUNT_FORMS = {'signup': 'usuaria.forms.CustomSignupForm'}
+ACCOUNT_FORMS = {'signup': 'usuaria.forms.CustomSignupForm',
+                 'login': 'usuaria.forms.CustomLoginForm'}
 
 LOGIN_REDIRECT_URL = '/dashboard'
 LOGOUT_REDIRECT_URL = '/'

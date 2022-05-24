@@ -4,5 +4,6 @@ from django.shortcuts import render
 def dashboard_view(request):
     context = {}
     if request.method == 'GET':
-        print(request)
+        print(request.user)
     return render(request, 'dashboard/dashboard.html', context)
+
