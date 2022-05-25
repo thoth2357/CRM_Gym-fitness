@@ -1,6 +1,7 @@
 from allauth.account.forms import SignupForm, LoginForm
 from django import forms
- 
+from django.contrib.auth.hashers import make_password
+
  
 # class CustomSignupForm(forms.Form):
 #     print('i got here')
@@ -31,7 +32,7 @@ class CustomSignupForm(SignupForm):
         user = super(CustomSignupForm, self).save(request)
         user.fullname = self.cleaned_data['fullname']
         user.email = self.cleaned_data['email']
-        user.password = self.cleaned_data['password1']
+        user.password = make_password(self.cleaned_data['password1'])
         user.save()
         return user
 

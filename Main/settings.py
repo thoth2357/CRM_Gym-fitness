@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     "cuotas",
     "clases",
 
+    'django_extensions',
     'widget_tweaks',
     "clear_cache",
     "allauth",
@@ -142,7 +143,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 MEDIA_URL = "/imagenes/"
 MEDIA_ROOT = BASE_DIR
 
-AUTH_USER_MODEL = 'usuaria.user'
+AUTH_USER_MODEL = 'usuaria.User'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
