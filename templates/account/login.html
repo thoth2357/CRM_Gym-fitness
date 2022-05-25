@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load widget_tweaks %}
+{% load account socialaccount %}
 
 
 {% block title %} Login {% endblock %}
@@ -27,9 +28,6 @@
 			<div class="wrap-login100">
 				<form class="login100-form validate-form" method="post">
 					{% csrf_token %}
-					{% if redirect_field_value %}
-  					<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  					{% endif %}
 					<span class="login100-form-title p-b-43">
 						iniciar sesión para continuar
 					</span>
