@@ -33,4 +33,4 @@ class CustomLoginForm(LoginForm):
         super().__init__(*args, **kwargs)
 
         self.fields["login"].widget = forms.TextInput(attrs={'placeholder': ''})
-        self.fields["password"].widget = forms.TextInput(attrs={'placeholder': ''})
+        self.fields["password"].widget = forms.PasswordInput(attrs={'placeholder': ''})
