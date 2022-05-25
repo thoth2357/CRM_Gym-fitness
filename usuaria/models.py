@@ -20,17 +20,14 @@ class UserManager(BaseUserManager):
         last_login=now,
         date_joined=now, 
     )
-    print('I got here ..the password is',password)
     user.set_password(make_password(password))
     user.save(using=self._db)
     return user
 
   def create_user(self, email, password, fullname, **extra_fields):
-    print('user here',email, password, fullname)
     return self._create_user(email, password, False, False, fullname, **extra_fields)
 
   def create_superuser(self, email, password, **extra_fields):
-    print('su user here',email, password)
     user=self._create_user(email, password, True, True, fullname='admin', **extra_fields)
     user.save(using=self._db)
     return user
