@@ -10,3 +10,8 @@ def dashboard_view(request):
             pass
     return render(request, 'dashboard/dashboard.html', context)
 
+
+# def home_view(request):
+#     context = {}
+#     return redirect()
+    
