@@ -4,6 +4,9 @@ from django.shortcuts import render
 def dashboard_view(request):
     context = {}
     if request.method == 'GET':
-        print(request.user)
+        if request.user.is_staff == True:
+            print('A Staff here')
+        else:
+            pass
     return render(request, 'dashboard/dashboard.html', context)
 
