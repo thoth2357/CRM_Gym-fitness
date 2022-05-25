@@ -18,6 +18,13 @@ from django import forms
 #         print('to be here',self.cleaned_data['fullname'])
 
 class CustomSignupForm(SignupForm):
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        self.fields["email"].widget = forms.TextInput(attrs={'placeholder': ''})
+        self.fields["password1"].widget = forms.TextInput(attrs={'placeholder': ''})
+        self.fields["password2"].widget = forms.TextInput(attrs={'placeholder': ''})
+        
+        
     fullname = forms.CharField(required=True, label='Fullname')
  
     def save(self, request):
