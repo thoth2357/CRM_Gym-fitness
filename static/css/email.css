@@ -2,7 +2,9 @@
 body {
     font-size: 1.4em;
     font-family: 'Dosis';font-size: 22px;
+    
 }
+
 
 div.menu-div {
     display: flex;
@@ -111,4 +113,25 @@ li {
 
 .p-button1-wrapper {
     text-align: center;
+}
+
+.btn-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     
+  }
+
+.button {
+    background-color: #008CBA;
+    color: #fff;
+    border:none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 2px 2px rgb(0,0,0);
+    min-height:30px; 
+    min-width: 120px;
+}
+.button:hover {
+    background-color:#002ead;
+    transition: 0.7s;
 }

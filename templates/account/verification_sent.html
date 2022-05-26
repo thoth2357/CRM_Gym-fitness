@@ -6,7 +6,8 @@
 {% block main_title %}Thank you for joining <strong>Gym</strong>!{% endblock main_title %}
 {% block main %}
     {% autoescape off %}
-        <h1>{% trans "Verify Your E-mail Address" %}</h1>
+        <h1><b>{% trans "Verify Your E-mail Address" %}</b></h1>
+        <hr/>
         <p>{% blocktrans %}<br/>We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. If you do not see the verification e-mail in your main inbox, check your spam folder. Please contact us if you do not receive the verification e-mail within a few minutes.{% endblocktrans %}</p>
     {% endautoescape %}
 {% endblock main %}
