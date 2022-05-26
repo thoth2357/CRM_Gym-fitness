@@ -11,6 +11,7 @@ class UserManager(BaseUserManager):
         raise ValueError('Users must have an email address')
     now = timezone.now()
     email = self.normalize_email(email)
+
     user = self.model(
         fullname = extra_fields['fullname'],
         email=email,
@@ -20,7 +21,7 @@ class UserManager(BaseUserManager):
         last_login=now,
         date_joined=now, 
     )
-    user.set_password(make_password(password))
+    user.set_password(password)
     user.save(using=self._db)
     return user
 
@@ -28,9 +29,8 @@ class UserManager(BaseUserManager):
     return self._create_user(email, password, False, False, fullname, **extra_fields)
 
   def create_superuser(self, email, password, **extra_fields):
-    user=self._create_user(email, password, True, True, fullname='admin', **extra_fields)
-    user.save(using=self._db)
-    return user
+    return self._create_user(email, password, True, True, fullname='admin', **extra_fields)
+    
 
 
 class User(AbstractBaseUser, PermissionsMixin):

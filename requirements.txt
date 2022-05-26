@@ -3,3 +3,4 @@ django-allauth
 django-extensions
 django-widget-tweaks
 django-clear-cache
+Pillow
